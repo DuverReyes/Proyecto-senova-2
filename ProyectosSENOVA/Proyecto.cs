@@ -7,8 +7,10 @@ namespace ProyectosSENOVA
     public class Proyecto
     {
         #region Atributos
-
+        public List<Proyecto> proyectos = new List<Proyecto>();
         #endregion
+
+
         #region Propieades
         public string Nombre { get; set; }
         public double Codigo { get; set; }
@@ -40,23 +42,37 @@ namespace ProyectosSENOVA
 
         public void IngresarPrpyecto()
         {
-            Console.WriteLine("Ingrese el Nombre del Proyecto");
-            Nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese el Codigo");
-            Codigo = double.Parse(Console.ReadLine());
-            Console.WriteLine("Ingrese el Area");
-            Area = Console.ReadLine();
-            Console.WriteLine("Ingrese el Duracion");
-            Duracion = int.Parse(Console.ReadLine());
+            var res = "y";
+            while (res=="y")
+            {
+                Proyecto miproyecto = new Proyecto();
+                Console.WriteLine("Ingrese el Nombre del Proyecto");
+                miproyecto.Nombre = Console.ReadLine();
+                Console.WriteLine("Ingrese el Codigo");
+                miproyecto.Codigo = double.Parse(Console.ReadLine());
+                Console.WriteLine("Ingrese el Area");
+                miproyecto.Area = Console.ReadLine();
+                Console.WriteLine("Ingrese el Duracion");
+                miproyecto.Duracion = int.Parse(Console.ReadLine());
+                proyectos.Add(miproyecto);
+                Console.WriteLine("Desea agregar otro proyecto");
+                res = Console.ReadLine();
+            
+            }
+
 
         }
 
         public void ImprimirProyecto()
         {
-            Console.WriteLine($"El Nombre del proyecto es:{Nombre}");
-            Console.WriteLine($"El Codigo del proyecto es:{Codigo}");
-            Console.WriteLine($"El Area del proyecto es:{Area}");
-            Console.WriteLine($"La durecion del proyecto es:{Duracion}");
+            foreach (var item in proyectos)
+            {
+            Console.WriteLine($"El Nombre del proyecto es:{item.Nombre}");
+            Console.WriteLine($"El Codigo del proyecto es:{item.Codigo}");
+            Console.WriteLine($"El Area del proyecto es:{item.Area}");
+            Console.WriteLine($"La durecion del proyecto es:{item.Duracion}");
+            }
+
         }
         #endregion
 
